@@ -1,0 +1,46 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Project Architecture}
+\author{group7}
+\date{November 2015}
+
+\begin{document}
+
+\maketitle
+
+\section{Project Idea}
+Cinema Chatter offers Göteborg's cinephiles information regarding the change over time in popularity and rating of the movies currently displayed in the theaters of the city. This information is available on a website and combined with other useful data, such as movies' plot and trailer, gathered from different sources.
+%enrich this section
+
+
+\section{Stakeholders}
+"The term stakeholder is used to refer to any person or group who will be affected by the system, directly or indirectly. Stakeholders include end-users who interact with the system and everyone else in an organisation that may be affected by its installation. Other system stakeholders may be engineers who are developing or maintaining related systems, business managers, domain experts, and trade union representatives." (Sommerville, 2007).
+\subsection{Users}
+The users of the system are cinephiles who wish to receive more information regarding the current films, in order to make a more informed choice when deciding which film to watch in the cinema. Since the movies featured on Cinema Chatter are the ones currently on display in cinemas of Göteborg, it is expected that mainly users from this city will visit the website. However, it is not excluded that people from other cities or countries might also find the information on Cinema Chatter interesting.
+
+\subsection{Other Stakeholders}
+Users are not the only stakeholders of the system.
+\paragraph{Developers.} Developers (us, the Group7) are responsible to develop and maintain the system. We have a great influence on the outcome as we have a good degree of freedom regarding software architecture choices. On the other hand, we are also influenced by the product as we will be evaluated based on it.
+
+\paragraph{Product owner.} Our supervisor for the project, Simeon, also acts as our product owner. He has great influence over the system as he request and prioritize features. 
+As supervisor, he also influences the system because he directs us towards certain tools or solutions in cases when we need guidance.
+
+\paragraph{Teacher.}
+This being a project for a university course, the course responsible, Imed, plays an important role. He monitors the team's efforts and provides some points of reflection and guidance. He is the one who imposes some functional requirements at the start of the project and who will grade the fnal product.
+
+\paragraph{Twitter.}
+Tweets are accessed and collected by the system through Twitter's API and a Twitter miner application. The use of Twitter's data has to respect their terms and conditions.
+
+\paragraph{IMDB.}
+Films' information on IMDB is accessed and collected by the system through a web-scrapping tool and an external API. The use of IMDB's data has to respect their terms and conditions.
+
+\paragraph{SF Bio.}
+Information regarding films currently on display is fetched from SF Bio website through a web-scrapping tool. The use of SF's data has to respect their terms and conditions.
+
+
+
+
+\section{References}
+Sommerville, Ian. Software Engineering. Harlow, England: Addison-Wesley, 2007.
+\end{document}
