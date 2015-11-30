@@ -379,7 +379,7 @@ public class MoviesInfos extends HttpPostRequest{
 			System.out.println("ERROR");
 		}
 	}
-
+    
 
    // THis method saves all movies infos in the Riak database
     public static void saveInRiak() throws Exception {
