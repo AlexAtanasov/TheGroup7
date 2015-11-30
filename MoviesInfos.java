@@ -82,6 +82,39 @@ public class MoviesInfos {
     	return movies;
 	}
 
+	public static String getPoster(String title) throws Exception {
+		String poster = "";
+
+		URL url = new URL(sfURL);
+        
+        Scanner in = new Scanner(new InputStreamReader(url.openStream()));
+
+        //Go to the point in the page where the poster is.
+        while (in.findInLine(title) == null) {
+            in.nextLine();
+        }
+        while (in.findInLine(title) == null) {
+            in.nextLine();
+        }
+        while (in.findInLine("posterTrigger") == null) {
+            in.nextLine();
+        }
+        while (in.findInLine("<img src=") == null) {
+            in.nextLine();
+        }
+
+        poster = in.nextLine();
+
+        //Trim poster url
+        poster = poster.substring(1);
+        poster = poster.substring(0, poster.indexOf('"'));
+
+        //Add the beginning of the url
+        poster = "http://www.sf.se" + poster;
+
+        return poster;
+
+	}
 
 
 
@@ -203,6 +236,7 @@ public class MoviesInfos {
 		return result;
 
 	}
+
 
 
 
@@ -350,7 +384,8 @@ public class MoviesInfos {
 	public static void main(String[] args) throws Exception {
 		// writeToCSV("MovieTitles.csv");
 		//printMoviesInfos();
-		writeToJSON("movies.json");
+		//writeToJSON("movies.json");
+		System.out.println(getPoster("Black Mass"));
 	}
 
 
