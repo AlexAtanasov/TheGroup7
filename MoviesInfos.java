@@ -251,7 +251,7 @@ public class MoviesInfos {
 			try {
 				String imdbID = getIMDBid(movie);
 				String[] info = getIMDBinfo(imdbID);
-				System.out.println("Title: " + info[0]);
+				System.out.println("Title: " + spacesToPlus(info[0]));
 				System.out.println("Year: " + info[1]);
 				System.out.println("Rating: " + info[2]);
 				System.out.println("Plot: " + info[3]);
@@ -383,9 +383,9 @@ public class MoviesInfos {
 
 	public static void main(String[] args) throws Exception {
 		// writeToCSV("MovieTitles.csv");
-		//printMoviesInfos();
+		printMoviesInfos();
 		//writeToJSON("movies.json");
-		System.out.println(getPoster("Black Mass"));
+		//System.out.println(getPoster("Black Mass"));
 	}
 
 
