@@ -3,7 +3,7 @@ import java.util.Scanner;
 import java.net.URL;
 import java.io.FileWriter;
 
-public class MoviesInfos {
+public class MoviesInfos extends HttpPostRequest{
 
 	public static final String sfURL = "http://www.sf.se/filmer/?city=goteborg";
 
@@ -381,11 +381,30 @@ public class MoviesInfos {
 	}
 
 
+   // THis method saves all movies infos in the Riak database
+    public static void saveInRiak() throws Exception {
+        String[] movies = getMovies();
+
+        for(String movie : movies ) {
+         try {
+            String imdbID = getIMDBid(movie);
+            String[] info = getIMDBinfo(imdbID);
+            postData(spacesToPlus(info[0]), info[1], info[2], info[3], info[4], info[5], info[6]);
+             } catch (Exception e) {
+              System.out.println("ERROR with movie: " + movie);
+            }
+        }
+
+    }
+
+
+
 	public static void main(String[] args) throws Exception {
 		// writeToCSV("MovieTitles.csv");
-		printMoviesInfos();
+		// printMoviesInfos();
 		//writeToJSON("movies.json");
 		//System.out.println(getPoster("Black Mass"));
+        saveInRiak();
 	}
 
 
