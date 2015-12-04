@@ -406,7 +406,7 @@ public class MoviesInfos extends HttpPostRequest {
 
 
 	// [English Title, Swedish Title, IMDB ID, Year, IMDB Rating, Poster, Trailer, Plot, hastag_lowercase, hastag_camelcase]
-	public static String[] getAllInfos(String swedishTitle) throws Exception {
+	public static String[] getAllInfos(String movie) throws Exception {
 		String[] result = new String[10];
 		
 		result[1] = movie;
