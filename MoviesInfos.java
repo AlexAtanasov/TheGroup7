@@ -3,7 +3,7 @@ import java.util.Scanner;
 import java.net.URL;
 import java.io.FileWriter;
 
-public class MoviesInfos extends HttpPostRequest{
+public class MoviesInfos extends HttpPostRequest {
 
 	public static final String sfURL = "http://www.sf.se/filmer/?city=goteborg";
 
@@ -82,7 +82,7 @@ public class MoviesInfos extends HttpPostRequest{
     	return movies;
 	}
 
-	public static String getPoster(String title) throws Exception {
+	public static String getPoster(String swedishTitle) throws Exception {
 		String poster = "";
 
 		URL url = new URL(sfURL);
@@ -90,10 +90,10 @@ public class MoviesInfos extends HttpPostRequest{
         Scanner in = new Scanner(new InputStreamReader(url.openStream()));
 
         //Go to the point in the page where the poster is.
-        while (in.findInLine(title) == null) {
+        while (in.findInLine(swedishTitle) == null) {
             in.nextLine();
         }
-        while (in.findInLine(title) == null) {
+        while (in.findInLine(swedishTitle) == null) {
             in.nextLine();
         }
         while (in.findInLine("posterTrigger") == null) {
@@ -113,6 +113,29 @@ public class MoviesInfos extends HttpPostRequest{
         poster = "http://www.sf.se" + poster;
 
         return poster;
+
+	}
+
+
+	/*
+	* This fuction takes in the imdb ID of a movie (String) and returns the link
+	* its trailer (String). If no trailer was found it returns "No trailer available".
+	*/
+	public static String getTrailer(String imdbID) throws Exception{
+		String trailer = "No trailer available";
+		String imdbURL = "http://www.imdb.com/title/" + imdbID;
+		URL url = new URL(imdbURL);
+		Scanner in = new Scanner(new InputStreamReader(url.openStream()));
+		while ((in.findInLine("data-video") == null) && (in.hasNextLine())) {
+			in.nextLine();
+		}
+		if (in.hasNext()) {
+			trailer = in.nextLine();
+			trailer = trailer.substring(2);
+			trailer = trailer.substring(0, trailer.indexOf('"'));
+			trailer = "http://www.imdb.com/video/imdb/" + trailer + "/imdb/embed?autoplay=false&width=480";
+		}
+		return trailer;
 
 	}
 
@@ -166,11 +189,11 @@ public class MoviesInfos extends HttpPostRequest{
 
 	/*
 	* The function takes in the IMDB ID of a movie (as a String) and returns a list
-	* with [title, year, IMDB rating, description, poster URL, hashtagL, hashtagU]. 
+	* with [title, year, IMDB rating, plot, hashtagL, hashtagU]. 
 	*/
 	public static String[] getIMDBinfo(String imdbID) throws Exception {
 
-		String[] new_info = new String[7];
+		String[] new_info = new String[6];
 		
 		// We use the OMDB api
 		String omdbURL = "http://www.omdbapi.com/?i=" + imdbID + "&y=&plot=full&r=json";
@@ -195,9 +218,9 @@ public class MoviesInfos extends HttpPostRequest{
 	        new_info[1] = info[1].substring(info[1].length()-4, info[1].length());
 	        new_info[2] = info[15].substring(13, info[15].length());
 	        new_info[3] = info[9].substring(7, info[9].length());
-	        new_info[4] = info[13].substring(9, info[13].length());
-	        new_info[5] = generateHashtags(new_info[0])[0];
-	        new_info[6] = generateHashtags(new_info[0])[1];
+	        
+	        new_info[4] = generateHashtags(new_info[0])[0];
+	        new_info[5] = generateHashtags(new_info[0])[1];
 	    }
 
         return new_info;
@@ -379,32 +402,68 @@ public class MoviesInfos extends HttpPostRequest{
 			System.out.println("ERROR");
 		}
 	}
-    
 
-   // THis method saves all movies infos in the Riak database
-    public static void saveInRiak() throws Exception {
-        String[] movies = getMovies();
 
-        for(String movie : movies ) {
-         try {
-            String imdbID = getIMDBid(movie);
-            String[] info = getIMDBinfo(imdbID);
-            postData(spacesToPlus(info[0]), info[1], info[2], info[3], info[4], info[5], info[6]);
-             } catch (Exception e) {
-              System.out.println("ERROR with movie: " + movie);
-            }
-        }
 
+	// [English Title, Swedish Title, IMDB ID, Year, IMDB Rating, Poster, Trailer, Plot, hastag_lowercase, hastag_camelcase]
+	public static String[] getAllInfos(String swedishTitle) throws Exception {
+		String[] result = new String[10];
+		
+		result[1] = movie;
+
+
+		try {
+			result[5] = getPoster(movie);
+			result[2] = getIMDBid(movie);
+			result[6] = getTrailer(result[2]);
+			String[] imdbInfo = getIMDBinfo(result[2]);
+			result[0] = spacesToPlus(imdbInfo[0]);
+			result[3] = imdbInfo[1];
+			result[4] = imdbInfo[2];
+			result[7] = imdbInfo[3];
+			result[8] = imdbInfo[4];
+			result[9] = imdbInfo[5];
+		} catch (Exception e) {
+			result[5] = "Error";
+			result[2] = "Error";
+			result[6] = "Error";
+			result[0] = "Error";
+			result[3] = "Error";
+			result[4] = "Error";
+			result[7] = "Error";
+			result[8] = "Error";
+			result[9] = "Error";
+		}
+
+		return result;
+	}
+
+	// THis method saves all movies infos in the Riak database
+	public static void saveInRiak() throws Exception {
+		String[] movies = getMovies();
+		for(String movie : movies ) {
+			try {
+				String[] info = getAllInfos(movie);
+				postData(info);
+			} catch (Exception e) {
+				System.out.println("ERROR with movie: " + movie);
+			}
+		}
     }
 
 
 
 	public static void main(String[] args) throws Exception {
 		// writeToCSV("MovieTitles.csv");
-		// printMoviesInfos();
+		//printMoviesInfos();
 		//writeToJSON("movies.json");
-		//System.out.println(getPoster("Black Mass"));
-        saveInRiak();
+		//System.out.println(getTrailer("tt1355683"));
+		String[][] allmovies = getAllInfos();
+		for (String[] movie : allmovies) {
+			for (String info: movie) {
+				System.out.println(info);
+			}
+		}
 	}
 
 
