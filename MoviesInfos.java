@@ -409,10 +409,11 @@ public class MoviesInfos extends HttpPostRequest {
 	public static String[] getAllInfos(String movie) throws Exception {
 		String[] result = new String[10];
 		
-		result[1] = movie;
+		
 
 
 		try {
+			result[1] = movie;
 			result[5] = getPoster(movie);
 			result[2] = getIMDBid(movie);
 			result[6] = getTrailer(result[2]);
@@ -424,15 +425,7 @@ public class MoviesInfos extends HttpPostRequest {
 			result[8] = imdbInfo[4];
 			result[9] = imdbInfo[5];
 		} catch (Exception e) {
-			result[5] = "Error";
-			result[2] = "Error";
-			result[6] = "Error";
-			result[0] = "Error";
-			result[3] = "Error";
-			result[4] = "Error";
-			result[7] = "Error";
-			result[8] = "Error";
-			result[9] = "Error";
+			System.out.println("Error with movie: " + movie);
 		}
 
 		return result;
@@ -458,12 +451,12 @@ public class MoviesInfos extends HttpPostRequest {
 		//printMoviesInfos();
 		//writeToJSON("movies.json");
 		//System.out.println(getTrailer("tt1355683"));
-		String[][] allmovies = getAllInfos();
-		for (String[] movie : allmovies) {
-			for (String info: movie) {
-				System.out.println(info);
-			}
-		}
+		// String[][] allmovies = getAllInfos();
+		// for (String[] movie : allmovies) {
+		// 	for (String info: movie) {
+		// 		System.out.println(info);
+		// 	}
+		// }
 	}
 
 
