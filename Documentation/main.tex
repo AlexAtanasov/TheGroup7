@@ -11,9 +11,12 @@
 
 \section{Project Idea}
 Cinema Chatter offers Göteborg's cinephiles information regarding the change over time in popularity and rating of the movies currently displayed in the theaters of the city. This information is available on a website and combined with other useful data, such as movies' plot and trailer, gathered from different sources.
-%enrich this section
+% TODO: enrich this section
 
 
+%%%--------------%%%
+%%% STAKEHOLDERS %%%
+%%%--------------%%%
 \section{Stakeholders}
 "The term stakeholder is used to refer to any person or group who will be affected by the system, directly or indirectly. Stakeholders include end-users who interact with the system and everyone else in an organisation that may be affected by its installation. Other system stakeholders may be engineers who are developing or maintaining related systems, business managers, domain experts, and trade union representatives." (Sommerville, 2007).
 \subsection{Users}
@@ -39,6 +42,65 @@ Films' information on IMDB is accessed and collected by the system through a web
 Information regarding films currently on display is fetched from SF Bio website through a web-scrapping tool. The use of SF's data has to respect their terms and conditions.
 
 
+%%%--------------%%%
+%%% REQUIREMENTS %%%
+%%%--------------%%%
+\section{Requirements}
+% TODO: write small intro
+
+\subsection{Functional requirements}
+We define the functional requirements following the MoSCoW Method. 
+% TODO: add reference http://www.dsdm.org/content/10-moscow-prioritisation
+
+\paragraph{Must Have}
+\begin{itemize}
+\item \textit{The system must be available on a website.}
+\item \textit{The system must display the titles of the movies currently on display in Göteborg's cinemas.}
+\item \textit{The system's website must, for each movie, display its IMDb rating and its Twitter popularity.}\\ Twitter popularity is defined by the number of Tweets containing the movie's hashtag.
+\end{itemize}
+
+\paragraph{Should Have}
+\begin{itemize}
+\item \textit{The system's website should, for each movie, display its title, poster, trailer, plot.}
+\item \textit{The system's website layout should be accordion-style.}
+\item \textit{The IMDb rating and the Twitter popularity displayed should be updated on regular basis (at least weekly).}
+\item \textit{The system's website could, for each movie, display a graph showing the change of IMDb rating and Twitter popularity over time.}
+\end{itemize}
+
+\paragraph{Could Have}
+\begin{itemize}
+\item \textit{The system's website could give the possibility to sort movies by title (alphabetically), rating and popularity.}
+\end{itemize}
+
+\paragraph{Won't Have This Time}
+\begin{itemize}
+\item \textit{The system's website won't implement some comment module.}\\
+Users could leave comments or reviews of movies.
+\end{itemize}
+
+
+\subsection{Quality Attributes}
+% TODO
+
+
+
+
+\subsection{Constraints}
+Given that this is a university project, most of our constraints are set by the responsible (Imed) who designed the course. Other constraints are given by our level of knowledge, time that we can dedicate to the project and funds.
+\begin{itemize}
+\item \textit{The product must be a social computing application.}
+\item \textit{The product must analyse social network data and other sources.}
+\item \textit{The product must aggregate and present users with useful information or predictions.}
+\item \textit{The data loader must be implemented in Erlang.}
+\item \textit{The data query manager must be implemented in Erlang.}
+\item \textit{The team must follow a SCRUM process, spanning over 7 sprints of the duration of 2 weeks each.}
+\item \texit{The project (product and documentation) must be delivered by the 18th of December.}
+\item \textit{The maximum budget for the project in terms of finance is 0SEK.}\\
+This means only free tools can be used.
+\item \textit{The maximum budget for the project in term of man hours is 1500 hours.}\\
+Calculated as 15 h/week per team member (7 members) per 14 weeks.
+% TODO: add more constraints
+\end{itemize}
 
 
 \section{References}
