@@ -1,9 +1,13 @@
 
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.util.EntityUtils;
+
 import java.io.IOException;
 
 
@@ -16,7 +20,7 @@ public class  HttpPostRequest {
     public static void postMoviesData(String[] info) {
 
         HttpClient client = HttpClientBuilder.create().build();
-        HttpPost postData = new HttpPost("http://127.0.0.1:10018/buckets/MoviesInfo/keys/" + info[9]);
+        HttpPost postData = new HttpPost("http://127.0.0.1:10018/buckets/MoviesInfos/keys/" + info[9]);
         HttpPost postHashtags = new HttpPost("http://127.0.0.1:10018/buckets/Hashtags/keys/" + info[9]);
         postData.setHeader("Content-Type", "application/json");
         postHashtags.setHeader("Content-Type", "application/json");
@@ -51,6 +55,23 @@ public class  HttpPostRequest {
 
 
 
+
+    public static String getData() {
+        HttpClient client = HttpClientBuilder.create().build();
+        HttpGet getdata = new HttpGet("http://127.0.0.1:10018/buckets/MoviesInfos/keys?keys=true");
+       //HttpResponse response = client.execute(getdata);
+         String content = "";
+        try {
+            HttpResponse response = client.execute(getdata);
+            HttpEntity entity = response.getEntity();
+             content = EntityUtils.toString(response.getEntity());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return content;
+
+    }
 
 
 
