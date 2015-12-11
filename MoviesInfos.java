@@ -244,7 +244,7 @@ public class MoviesInfos extends HttpPostRequest {
         }
 
         //Generating hashtag as title without spaces and capitalization
-        String hashtagU = "%23";
+        String hashtagU = "#";
         hashtagU += title.substring(0,1).toUpperCase();
         for (int i=1; i<len; i++) {
             if (title.substring(i, i+1).equals(" ")) {
@@ -424,8 +424,8 @@ public class MoviesInfos extends HttpPostRequest {
         result[7] = imdbInfo[3];
         result[8] = imdbInfo[4];
         //URLEncoder.encode(info[0], "UTF-8").replaceAll("\\+", "%20")
-        result[9] = imdbInfo[5];
-        //result[9] = URLEncoder.encode(imdbInfo[5], "UTF-8");
+       // result[9] = imdbInfo[5];
+        result[9] = URLEncoder.encode(imdbInfo[5], "UTF-8");
 
 
         return result;
@@ -472,16 +472,16 @@ public class MoviesInfos extends HttpPostRequest {
     public static void main(String[] args) throws Exception {
         // writeToCSV("MovieTitles.csv");
         //  printMoviesInfos();
-          //  saveInRiak();
-        String data = getData();
-        System.out.println(data);
+         //   saveInRiak();
+          String data = getData();
+          System.out.println(data);
         //  String[] titles = new String[] {get.getContent()};
-        String[] titles = data.split(",");
-        titles[0] = titles[0].substring(10, titles[0].length()-1);
-        for (int i=1; i<titles.length;i++) {
-            titles[i] = titles[i].substring(1, titles[i].length()-1);
-        }
-        titles[titles.length-1] = titles[titles.length-1].substring(0, titles[titles.length-1].length()-2);
+          String[] titles = data.split(",");
+          titles[0] = titles[0].substring(10, titles[0].length()-1);
+          for (int i=1; i<titles.length;i++) {
+             titles[i] = titles[i].substring(1, titles[i].length()-1);
+          }
+          titles[titles.length-1] = titles[titles.length-1].substring(0, titles[titles.length-1].length()-2);
 
         //  JSONObject jsnObject = new JSONObject(get.getContent());
         // JSONArray jsonArray = new JSONArray(jsnObject);
@@ -492,10 +492,12 @@ public class MoviesInfos extends HttpPostRequest {
         //  System.out.println(result);
         //  }
 
-        System.out.println("Array length: " + titles.length);
-        System.out.println("Content: " + Arrays.toString(titles));
+         System.out.println("Array length: " + titles.length);
+      //  System.out.println("Content: " + Arrays.toString(titles));
 
-        for(int i = 0; i < titles.length; i++)
+          deleteKeys(titles);
+
+         for(int i = 0; i < titles.length; i++)
             System.out.println(titles[i]);
 
         //    String[] array1 = {"An", "Spectre", "The Nut Job", "Legend"};
