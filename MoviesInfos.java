@@ -228,6 +228,38 @@ public class MoviesInfos extends HttpPostRequest {
         return new_info;
     }
 
+    public static String encodeString(String aString) {
+        String result = "";
+        result += aString.substring(0,1).toUpperCase();
+        int len = aString.length();
+        for (int i=1; i<len; i++) {
+            if (aString.substring(i, i+1).equals(" ")) {
+                result += aString.substring(i+1, i+2).toUpperCase();
+                i++;
+            } else {
+                result += aString.substring(i, i+1).toLowerCase();
+            }
+        }
+        result = result.replace(" ", "");
+        result = result.replace("'", "");
+        result = result.replace(",", "");
+        result = result.replace(".", "");
+        result = result.replace(":", "");
+        result = result.replace(";", "");
+        result = result.replace("(", "");
+        result = result.replace(")", "");
+        result = result.replace("\"", "");
+        result = result.replace("!", "");
+        result = result.replace("ä", "a");
+        result = result.replace("å", "a");
+        result = result.replace("ö", "o");
+        result = result.replace("Å", "A");
+        result = result.replace("Ä", "A");
+        result = result.replace("Ö", "O");
+        return result;
+        
+    }
+
     /*
     * This function generates possible hashtags for a given title (given as a String).
     */
@@ -244,16 +276,7 @@ public class MoviesInfos extends HttpPostRequest {
         }
 
         //Generating hashtag as title without spaces and capitalization
-        String hashtagU = "#";
-        hashtagU += title.substring(0,1).toUpperCase();
-        for (int i=1; i<len; i++) {
-            if (title.substring(i, i+1).equals(" ")) {
-                hashtagU += title.substring(i+1, i+2).toUpperCase();
-                i++;
-            } else {
-                hashtagU += title.substring(i, i+1).toLowerCase();
-            }
-        }
+        String hashtagU = encodeString(title);
 
         String[] result = new String[2];
         result[0] = hashtagL;
@@ -470,48 +493,53 @@ public class MoviesInfos extends HttpPostRequest {
 
 
     public static void main(String[] args) throws Exception {
-        // writeToCSV("MovieTitles.csv");
-        //  printMoviesInfos();
-         //   saveInRiak();
-          String data = getData();
-          System.out.println(data);
-        //  String[] titles = new String[] {get.getContent()};
-          String[] titles = data.split(",");
-          titles[0] = titles[0].substring(10, titles[0].length()-1);
-          for (int i=1; i<titles.length;i++) {
-             titles[i] = titles[i].substring(1, titles[i].length()-1);
-          }
-          titles[titles.length-1] = titles[titles.length-1].substring(0, titles[titles.length-1].length()-2);
+      //   // writeToCSV("MovieTitles.csv");
+      //   //  printMoviesInfos();
+      //    //   saveInRiak();
+      //     String data = getData();
+      //     System.out.println(data);
+      //   //  String[] titles = new String[] {get.getContent()};
+      //     String[] titles = data.split(",");
+      //     titles[0] = titles[0].substring(10, titles[0].length()-1);
+      //     for (int i=1; i<titles.length;i++) {
+      //        titles[i] = titles[i].substring(1, titles[i].length()-1);
+      //     }
+      //     titles[titles.length-1] = titles[titles.length-1].substring(0, titles[titles.length-1].length()-2);
 
-        //  JSONObject jsnObject = new JSONObject(get.getContent());
-        // JSONArray jsonArray = new JSONArray(jsnObject);
-        //  System.out.println(jsonArray);
-        // JSONArray array = jsnObject.getJSONArray("keys");
-        //  for (int i = 0; i < array.length(); i++) {
-        //     JSONObject result = array.getJSONObject(i);
-        //  System.out.println(result);
-        //  }
+      //   //  JSONObject jsnObject = new JSONObject(get.getContent());
+      //   // JSONArray jsonArray = new JSONArray(jsnObject);
+      //   //  System.out.println(jsonArray);
+      //   // JSONArray array = jsnObject.getJSONArray("keys");
+      //   //  for (int i = 0; i < array.length(); i++) {
+      //   //     JSONObject result = array.getJSONObject(i);
+      //   //  System.out.println(result);
+      //   //  }
 
-         System.out.println("Array length: " + titles.length);
-      //  System.out.println("Content: " + Arrays.toString(titles));
+      //    System.out.println("Array length: " + titles.length);
+      // //  System.out.println("Content: " + Arrays.toString(titles));
 
-          deleteKeys(titles);
+      //     deleteKeys(titles);
 
-         for(int i = 0; i < titles.length; i++)
-            System.out.println(titles[i]);
+      //    for(int i = 0; i < titles.length; i++)
+      //       System.out.println(titles[i]);
 
-        //    String[] array1 = {"An", "Spectre", "The Nut Job", "Legend"};
-        //   String[] array2 = {"An", "Spectre", "The Here After", "Burnt", "Legend"};
-        //   checkTitles(array1, array2);
+      //   //    String[] array1 = {"An", "Spectre", "The Nut Job", "Legend"};
+      //   //   String[] array2 = {"An", "Spectre", "The Here After", "Burnt", "Legend"};
+      //   //   checkTitles(array1, array2);
 
-        //writeToJSON("movies.json");
-        //System.out.println(getTrailer("tt1355683"));
-        //   String[][] allmovies = getAllInfos();
-        //   for (String[] movie : allmovies) {
-        //      for (String info: movie) {
-        //          System.out.println(info);
-        //     }
-        //   }
+      //   //writeToJSON("movies.json");
+      //   //System.out.println(getTrailer("tt1355683"));
+      //   //   String[][] allmovies = getAllInfos();
+      //   //   for (String[] movie : allmovies) {
+      //   //      for (String info: movie) {
+      //   //          System.out.println(info);
+      //   //     }
+      //   //   }
+        System.out.println(encodeString("Hello, you!"));
+        System.out.println(encodeString("Varsågod"));
+        System.out.println(encodeString("Moa's öl"));
+        
+        
     }
 
 
