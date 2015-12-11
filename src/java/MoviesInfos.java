@@ -1,6 +1,9 @@
+package src.java;
+
+import src.java.HttpPostRequest;
+
 import java.io.InputStreamReader;
 import java.net.URLEncoder;
-import java.util.Arrays;
 import java.util.Scanner;
 import java.net.URL;
 import java.io.FileWriter;
@@ -492,19 +495,44 @@ public class MoviesInfos extends HttpPostRequest {
     }
 
 
+
+
+    public static String[] splitString(String string) {
+
+        String[] result;
+        String data = string;
+       // System.out.println(data);
+        //  String[] result = new String[] {data};
+        result = data.split(",");
+        result[0] = result[0].substring(10, result[0].length() - 1);
+        for (int i=1; i<result.length;i++) {
+            result[i] = result[i].substring(1, result[i].length()-1);
+        }
+        result[result.length-1] = result[result.length-1].substring(0, result[result.length-1].length()-2);
+
+
+        return result;
+
+    }
+
+
     public static void main(String[] args) throws Exception {
       //   // writeToCSV("MovieTitles.csv");
       //       printMoviesInfos();
-      //    //   saveInRiak();
-      //     String data = getData();
-      //     System.out.println(data);
-      //   //  String[] titles = new String[] {get.getContent()};
-      //     String[] titles = data.split(",");
-      //     titles[0] = titles[0].substring(10, titles[0].length()-1);
-      //     for (int i=1; i<titles.length;i++) {
-      //        titles[i] = titles[i].substring(1, titles[i].length()-1);
-      //     }
-      //     titles[titles.length-1] = titles[titles.length-1].substring(0, titles[titles.length-1].length()-2);
+        //     saveInRiak();
+           String data = getData();
+         //  System.out.println(data);
+
+        splitString(data);
+
+        System.out.println(data);
+        //   String[] titles = new String[] {get.getContent()};
+         //    String[] titles = data.split(",");
+         //  titles[0] = titles[0].substring(10, titles[0].length()-1);
+         //  for (int i=1; i<titles.length;i++) {
+          //    titles[i] = titles[i].substring(1, titles[i].length()-1);
+          // }
+          // titles[titles.length-1] = titles[titles.length-1].substring(0, titles[titles.length-1].length()-2);
 
       //   //  JSONObject jsnObject = new JSONObject(get.getContent());
       //   // JSONArray jsonArray = new JSONArray(jsnObject);
@@ -515,13 +543,13 @@ public class MoviesInfos extends HttpPostRequest {
       //   //  System.out.println(result);
       //   //  }
 
-      //    System.out.println("Array length: " + titles.length);
+       //   System.out.println("Array length: " + titles.length);
       // //  System.out.println("Content: " + Arrays.toString(titles));
 
-      //     deleteKeys(titles);
+         //  deleteKeys(titles);
 
-      //    for(int i = 0; i < titles.length; i++)
-      //       System.out.println(titles[i]);
+       //   for(int i = 0; i < titles.length; i++)
+        //     System.out.println(titles[i]);
 
       //   //    String[] array1 = {"An", "Spectre", "The Nut Job", "Legend"};
       //   //   String[] array2 = {"An", "Spectre", "The Here After", "Burnt", "Legend"};
@@ -535,10 +563,10 @@ public class MoviesInfos extends HttpPostRequest {
       //   //          System.out.println(info);
       //   //     }
       //   //   }
-        System.out.println(encodeString("Hello, you!"));
-        System.out.println(encodeString("Varsågod"));
-        System.out.println(encodeString("Moa's öl"));
-        printMoviesInfos();
+      //  System.out.println(encodeString("Hello, you!"));
+       // System.out.println(encodeString("Varsågod"));
+       // System.out.println(encodeString("Moa's öl"));
+       // printMoviesInfos();
         
         
     }
