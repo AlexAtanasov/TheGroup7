@@ -249,6 +249,7 @@ public class MoviesInfos extends HttpPostRequest {
         result = result.replace("(", "");
         result = result.replace(")", "");
         result = result.replace("\"", "");
+        result = result.replace("-", "");
         result = result.replace("!", "");
         result = result.replace("ä", "a");
         result = result.replace("å", "a");
@@ -297,14 +298,13 @@ public class MoviesInfos extends HttpPostRequest {
         System.out.println("Movie list:");
         for (String movie : movies) {
             try {
-                String imdbID = getIMDBid(movie);
-                String[] info = getIMDBinfo(imdbID);
-                // URLEncoder.encode(info[6], "UTF-8").replaceAll("\\+", "%20")
-                System.out.println("Title: " + URLEncoder.encode(info[0], "UTF-8").replaceAll("\\+", "%20"));
-                System.out.println("Year: " + info[1]);
-                System.out.println("Rating: " + info[2]);
-                System.out.println("Plot: " + info[3]);
-                System.out.println("PosterURL: " +info[4]);
+                String[] info = getAllInfos(movie);
+                System.out.println("Title: " + info[0].replaceAll("\+", " "));
+                System.out.println("Year: " + info[3]);
+                System.out.println("Rating: " + info[4]);
+                System.out.println("Plot: " + info[7]);
+                System.out.println("PosterURL: " +info[5]);
+                System.out.println("Hastag(key): " +info[9]);
                 System.out.println("-----------------------------------------");
             } catch (Exception e) {
                 System.out.println("ERROR with movie: " + movie);
@@ -538,6 +538,7 @@ public class MoviesInfos extends HttpPostRequest {
         System.out.println(encodeString("Hello, you!"));
         System.out.println(encodeString("Varsågod"));
         System.out.println(encodeString("Moa's öl"));
+        printMoviesInfos();
         
         
     }
