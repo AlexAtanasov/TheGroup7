@@ -131,17 +131,17 @@ public class MoviesInfos extends HttpPostRequest {
         String imdbURL = "http://www.imdb.com/title/" + imdbID;
         URL url = new URL(imdbURL);
         Scanner in = new Scanner(new InputStreamReader(url.openStream()));
-        while ((in.findInLine("data-video") == null) && (in.hasNextLine())) {
+         while ((in.findInLine("<div class=\"slate\">") == null) && (in.hasNextLine())) {
             in.nextLine();
+            
         }
         if (in.hasNext()) {
+            in.nextLine();
             trailer = in.nextLine();
-            trailer = trailer.substring(2);
-            trailer = trailer.substring(0, trailer.indexOf('"'));
+            trailer = trailer.substring(trailer.indexOf("imdb/")+5, trailer.indexOf("?ref"));
             trailer = "http://www.imdb.com/video/imdb/" + trailer + "/imdb/embed?autoplay=false&width=480";
         }
         return trailer;
-
     }
 
 
