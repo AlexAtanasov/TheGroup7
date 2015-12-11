@@ -299,7 +299,7 @@ public class MoviesInfos extends HttpPostRequest {
         for (String movie : movies) {
             try {
                 String[] info = getAllInfos(movie);
-                System.out.println("Title: " + info[0].replaceAll("\+", " "));
+                System.out.println("Title: " + info[0].replaceAll("\\+", " "));
                 System.out.println("Year: " + info[3]);
                 System.out.println("Rating: " + info[4]);
                 System.out.println("Plot: " + info[7]);
@@ -494,7 +494,7 @@ public class MoviesInfos extends HttpPostRequest {
 
     public static void main(String[] args) throws Exception {
       //   // writeToCSV("MovieTitles.csv");
-      //   //  printMoviesInfos();
+      //       printMoviesInfos();
       //    //   saveInRiak();
       //     String data = getData();
       //     System.out.println(data);
