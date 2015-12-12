@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Cinema Chatter
+	</title>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+
+</head>
+
+<body>
+	<header>
+		<h1 class="text-center">Cinema Chatter</h1>
+	</header>
+
+	<div class = "container-fluid">
+
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-7">
+				<h4 style="margin-left:10px;">Title</h4>
+			</div>
+			<div class="col-md-2">
+				<h4 style="margin-left:-10px;">Popularity</h4>
+			</div>
+			<div class="col-md-2">
+				<h4 style="margin-left:-15px;">Rating</h4>
+			</div>
+		</div>
+
+		<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+			<div id="code_goes_here"> </div>
+
+			</div>
+		</div>
+
+</body>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+
+
+<script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1.1','packages':['line', 'corechart']}]}"></script>
+<script type="text/javascript" src="./graph.js"></script>
+
+
+<script type="text/javascript">
+
+var xmlhttp = new XMLHttpRequest();
+var url = "MovieBucketExample.json";
+
+xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        var myArray= JSON.parse(xmlhttp.responseText);
+        generate_code(myArray);
+    }
+};
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+
+
+
+
+var generate_code = function(movies) {
+
+	for (var i in movies) {
+		var block = "";
+		block+= '<div class="panel panel-default" id="'+i+'">';
+		block += '<div class="panel-heading" role="tab" id="heading'+i+'"><a role="button" onclick="chart(\''+i+'\', \'chart'+i+'\', \'.\/DataBucketExample.json\')" data-toggle="collapse" data-parent="#accordion" href="#collapse'+i+'" aria-expanded="false" aria-controls="collapse'+i+'"><div class="row"><div class="col-md-1"><div style="width:50px;height:50px;overflow:hidden"><img id="poster'+i+'" width="50" height="72"></div></div><div class="col-md-7"><h4 id = "movie'+i+'"></h4></div><div class="col-md-2"><h4 id ="pop'+i+'"></h4></div><div class="col-md-2"><h4 id="rating'+i+'"></h4></div></div></a></div><div id="collapse'+i+'" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading'+i+'"><div class="panel-body"><div class="col-md-7"><p id="plot'+i+'"></p><div id="chart'+i+'"></div></div><div class="col-md-5"><iframe id="trailer'+i+'" width="480" height="270" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" frameborder="no" scrolling="no"></iframe></div><div class="col-md-7"></div></div></div></div></div>';
+
+		document.getElementById('code_goes_here').innerHTML+= block;
+
+		document.getElementById('movie'+i).innerHTML=movies[i].title;
+		document.getElementById('pop'+i).innerHTML = "50";
+		document.getElementById('rating'+i).innerHTML = movies[i].rating;
+		document.getElementById('plot'+i).innerHTML = movies[i].plot;
+		if(movies[i].trailer == "No trailer available"){
+			document.getElementById('trailer'+i).src = "http://static.websimages.com/Apps/Videos/not_found_ss.png";
+		} else {
+			document.getElementById('trailer'+i).src = movies[i].trailer;
+		}
+		document.getElementById('poster'+i).src = movies[i].poster;
+	}
+
+}
+
+
+</script>
+
+
+
+</html>
