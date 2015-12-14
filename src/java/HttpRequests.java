@@ -41,7 +41,7 @@ public class  HttpRequests {
                 "\"imdbrating\":\"" + info[4] + "\", " +
                 "\"plot\":\"" + info[7] + "\", " +
                 "\"poster\":\"" + info[5] + "\", " +
-                "\"trailer\":\"" + info[6] + "\", "
+                "\"trailer\":\"" + info[6] + "\""
                 //  "\"HashtagL\":\"" + info[8] + "\", " +
                 //  "\"HashtagU\":\"" + info[9]
                 + "\"}";
