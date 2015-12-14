@@ -25,14 +25,14 @@ public class  HttpRequests {
     HttpEntity entity;
     String bucket;
     String key;
-    String ip;
-    String port;
+    static String IP = "129.16.155.12";
+    static String PORT = "10018";
 
 
     /* This method saves the movies infos in the Riak database as json */
     public void postMoviesData(String[] info) {
 
-        HttpPost postData = new HttpPost("http://127.0.0.1:10018/buckets/Movie_Info/keys/" + info[9]);
+        HttpPost postData = new HttpPost("http://" + IP + ":" + PORT + "/buckets/Movie_Info/keys/" + info[9]);
         //  HttpPost postHashtags = new HttpPost("http://127.0.0.1:10018/buckets/Hashtags21/keys/" + info[9]);
         postData.setHeader("Content-Type", "application/json");
         //   postHashtags.setHeader("Content-Type", "application/json");
@@ -66,9 +66,9 @@ public class  HttpRequests {
 
 
 
-    public  String getAllKeys(String bucket) {
+    public String getAllKeys(String bucket) {
         this.bucket = bucket;
-        String url = "http://127.0.0.1:10018/buckets/" + bucket + "/keys?keys=true";
+        String url = "http://" + IP + ":" + PORT + "/buckets/" + bucket + "/keys?keys=true";
         this.get = new HttpGet(url);
         String content = "";
         try {
@@ -109,7 +109,7 @@ public class  HttpRequests {
         
         this.bucket = bucket;
         this.key = key;
-        String url = "http://127.0.0.1:10018/buckets/" + bucket + "/keys/" + key;
+        String url = "http://" + IP + ":" + PORT + "/buckets/" + bucket + "/keys/" + key;
         //  curl -v http://127.0.0.1:10018/buckets/Hashtags/keys/#45Years
         this.get = new HttpGet(url);
         String content = "";
@@ -130,7 +130,7 @@ public class  HttpRequests {
 
         this.bucket = bucket;
         this.key = key;
-        String url = "http://127.0.0.1:10018/buckets/" + bucket + "/keys/" + key;
+        String url = "http://" + IP + ":" + PORT + "/buckets/" + bucket + "/keys/" + key;
         HttpClient client = HttpClientBuilder.create().build();
         //HttpDelete deleteData = new HttpDelete("http://127.0.0.1:10018/buckets/Movies_Infos/keys/" + key);
         try {
@@ -148,7 +148,7 @@ public class  HttpRequests {
    public void deleteAllKeys(String bucket, String[] keys) {
        this.bucket = bucket;
        String key = "";
-       String url = "http://127.0.0.1:10018/buckets/" + bucket + "/keys/" + key;
+       String url = "http://" + IP + ":" + PORT + "/buckets/" + bucket + "/keys/" + key;
        //HttpDelete delete = new HttpDelete("http://127.0.0.1:10018/buckets/Movies_Infos/keys/" + key);
        try {
 
@@ -177,7 +177,7 @@ public class  HttpRequests {
             for (int i = 0; i < keys.length; i++) {
                 key = keys[i].toString();
                 // URLEncoder.encode(keys[i], "UTF-8");
-                HttpDelete deleteData = new HttpDelete("http://127.0.0.1:10018/buckets/Movie_Info/keys/" + key);
+                HttpDelete deleteData = new HttpDelete("http://" + IP + ":" + PORT + "/buckets/Movie_Info/keys/" + key);
                 deleteData.setHeader("Accept", "application/json");
                 HttpResponse response = client.execute(deleteData);
             }
