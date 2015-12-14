@@ -16,7 +16,7 @@ import java.net.URLEncoder;
 
 /* This class implements POST, GET and DELETE HttpRequests in java
 * */
-public class  HttpRequests {
+public class HttpRequests {
     HttpClient client = HttpClientBuilder.create().build();
     HttpGet get;
     HttpPost post;
@@ -27,6 +27,10 @@ public class  HttpRequests {
     String key;
     static String IP = "129.16.155.12";
     static String PORT = "10018";
+
+    public HttpRequests(){
+        //Constructor for testing purposes
+    }
 
 
     /* This method saves the movies infos in the Riak database as json */
@@ -82,6 +86,17 @@ public class  HttpRequests {
     }
 
     /*
+    * Given a bucket, it returns all an array of its keys
+    */
+    public String[] getAllKeysList(String bucket) {
+        String url = "http://" + IP + ":" + PORT + "/buckets/" + bucket + "/keys?keys=true";
+        String keysStr = httpGet(url);
+        keysStr = keysStr.substring(10, keysStr.length()-3);
+        String[] keys = keysStr.split("\",\"");
+        return keys;
+    }
+
+    /*
     * Helper method: given a url it returns a string of its content
     */
     private String httpGet(String url) {
@@ -114,7 +129,6 @@ public class  HttpRequests {
         }
 
         return content;
-
 
     }
 
@@ -204,6 +218,7 @@ public class  HttpRequests {
 
 
     }
+
 
 
 
