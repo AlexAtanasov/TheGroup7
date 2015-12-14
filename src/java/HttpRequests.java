@@ -78,9 +78,24 @@ public class  HttpRequests {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return content;
+    }
 
+    /*
+    * Helper method: given a url it returns a string of its content
+    */
+    private String httpGet(String url) {
+        this.get = new HttpGet(url);
+        String content = "";
+        try {
+            this.response = client.execute(get);
+            this.entity = response.getEntity();
+            content = EntityUtils.toString(response.getEntity());
+        } catch (IOException e) {
+            System.err.println("Error in httpGet(url) with url = " + url);
+            e.printStackTrace();
+        }
+        return content;
     }
 
 
