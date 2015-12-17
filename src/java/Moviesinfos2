@@ -1,20 +1,4 @@
- /*HttpPost postData = new HttpPost("http://129.16.155.12:10018/buckets/Movie_Data/keys/" + info[9]);
-      //  HttpPost postHashtags = new HttpPost("http://127.0.0.1:10018/buckets/Hashtags21/keys/" + info[9]);
-        postData.setHeader("Content-Type", "application/json");
-     //   postHashtags.setHeader("Content-Type", "application/json");
-        String jsonString = "{\"title\":\"" + info[0] + "\", " +
-                "\"year\":\"" + info[3] + "\", " +
-                "\"imdb rating\":\"" + info[4] + "\", " +
-                "\"plot\":\"" + info[7] + "\", " +
-                "\"poster\":\"" + info[5] + "\", " +
-                "\"imdb id\":\"" + info[2] + "\", " +
-                "\"trailer\":\"" + info[6] + "\", " +
-                  "\"genre\":\"" + info[10] + "\" , " +
-                  "\"director\":\"" + info[11] + "\" , " +
-                  "\"actors\":\"" + info[12] + "\" , "
-                + "\"}";
 
-        String hashtag = "{\"hashtag\":\"" + info[9]   + "\"}";*/
 
 
 
@@ -214,7 +198,7 @@ public class MoviesInfos extends HttpPostRequest {
 
     /*
     * The function takes in the IMDB ID of a movie (as a String) and returns a list
-    * with [title, year, IMDB rating, plot, hashtagL, hashtagU].
+    * with [title, year, IMDB rating, plot, genre, director, actor,hashtagL, hashtagU].
     */
     public static String[] getIMDBinfo(String imdbID) throws Exception {
 
@@ -363,6 +347,7 @@ public class MoviesInfos extends HttpPostRequest {
         String plot = "\"plot\": ";
         String trailer = "\"trailer\": ";
         String poster = "\"poster\": ";
+        String actors= "\"actors\": ";
 
 
         try{
@@ -389,6 +374,12 @@ public class MoviesInfos extends HttpPostRequest {
                     file_writer.append(comma);
                     file_writer.append(new_line);
                     file_writer.append(Director + '"'+info[11]+'"');
+                    file_writer.append(comma);
+                    file_writer.append(new_line);
+                    file_writer.append(actors + '"'+info[12]+'"');
+                    file_writer.append(comma);
+                    file_writer.append(new_line);
+                    file_writer.append(Genre + '"'+info[10]+'"');
                     file_writer.append(comma);
                     file_writer.append(new_line);
                     file_writer.append(plot + '"'+info[3]+'"');
@@ -447,6 +438,8 @@ public class MoviesInfos extends HttpPostRequest {
                     file_writer.append(info[11]);
                     file_writer.append(comma);
                     file_writer.append('"' +info[3] + '"');
+                    
+                    
                     file_writer.append(comma);
                     file_writer.append(info[4]);
                     file_writer.append(comma);
@@ -553,12 +546,52 @@ public class MoviesInfos extends HttpPostRequest {
         return result;
 
     }
+    
+    /* This method saves the movies infos in the Riak database as json */
+	/* public static void postMoviesData(String[] info) {
+       this method modify from the HttppostRequest save title ,year ,imdbrating ,plot
+       poster ,imdbID ,trailer,genre,director actors to a new riak bucket 
+        HttpClient client = HttpClientBuilder.create().build();
+        HttpPost postData = new HttpPost("http://129.16.155.12:10018/buckets/Movie_Data/keys/" + info[9]);
+      //  HttpPost postHashtags = new HttpPost("http://127.0.0.1:10018/buckets/Hashtags21/keys/" + info[9]);
+        postData.setHeader("Content-Type", "application/json");
+     //   postHashtags.setHeader("Content-Type", "application/json");
+        String jsonString = "{\"title\":\"" + info[0] + "\", " +
+                "\"year\":\"" + info[3] + "\", " +
+                "\"imdbrating\":\"" + info[4] + "\", " +
+                "\"plot\":\"" + info[7] + "\", " +
+                "\"poster\":\"" + info[5] + "\", " +
+                "\"imdbID\":\"" + info[2] + "\", " +
+                "\"trailer\":\"" + info[6] + "\", " +
+                  "\"genre\":\"" + info[10] + "\" , " +
+                  "\"director\":\"" + info[11] + "\" , " +
+                  "\"actors\":\"" + info[12]
+                + "\"}";
 
+        String hashtag = "{\"hashtag\":\"" + info[9]   + "\"}";
+
+        try {
+            //postData.setEntity(new StringEntity(jsonString, ContentType.create("application/json")));
+
+
+            postData.setEntity(new StringEntity(jsonString));
+         //   postHashtags.setEntity(new StringEntity(hashtag));
+
+            HttpResponse response = client.execute(postData);
+          //  HttpResponse responseHashtag = client.execute(postHashtags);
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+*/
 
     public static void main(String[] args) throws Exception {
       //   // writeToCSV("MovieTitles.csv");
-         //printMoviesInfos();
-            saveInRiak();
+        //printMoviesInfos();
+           saveInRiak();
           // String data = getData();
          //  System.out.println(data);
 
