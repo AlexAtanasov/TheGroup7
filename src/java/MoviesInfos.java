@@ -4,11 +4,12 @@ import src.java.HttpPostRequest;
 
 import java.io.InputStreamReader;
 import java.net.URLEncoder;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.net.URL;
 import java.io.FileWriter;
 
-public class MoviesInfos extends HttpPostRequest {
+public class MoviesInfos {
 
     public static final String sfURL = "http://www.sf.se/filmer/?city=goteborg";
 
@@ -458,14 +459,15 @@ public class MoviesInfos extends HttpPostRequest {
     }
 
     // This method saves all movies infos in the Riak database
-    public static void saveInRiak() throws Exception {
+    public  static void saveInRiak() throws Exception {
+        HttpPostRequest request = new HttpPostRequest();
         String[] movies = getMovies();
         for(String movie : movies ) {
             // System.out.println("Current: " + movie);
             try {
 
                 String[] info = getAllInfos(movie);
-                postMoviesData(info);
+                request.postMoviesData(info);
             } catch (Exception e) {
                 System.out.println("ERROR with movie: " + movie);
             }
@@ -517,58 +519,8 @@ public class MoviesInfos extends HttpPostRequest {
 
 
     public static void main(String[] args) throws Exception {
-      //   // writeToCSV("MovieTitles.csv");
-      //       printMoviesInfos();
-        //     saveInRiak();
-           String data = getData();
-         //  System.out.println(data);
+         // saveInRiak();
 
-        splitString(data);
-
-        System.out.println(data);
-        //   String[] titles = new String[] {get.getContent()};
-         //    String[] titles = data.split(",");
-         //  titles[0] = titles[0].substring(10, titles[0].length()-1);
-         //  for (int i=1; i<titles.length;i++) {
-          //    titles[i] = titles[i].substring(1, titles[i].length()-1);
-          // }
-          // titles[titles.length-1] = titles[titles.length-1].substring(0, titles[titles.length-1].length()-2);
-
-      //   //  JSONObject jsnObject = new JSONObject(get.getContent());
-      //   // JSONArray jsonArray = new JSONArray(jsnObject);
-      //   //  System.out.println(jsonArray);
-      //   // JSONArray array = jsnObject.getJSONArray("keys");
-      //   //  for (int i = 0; i < array.length(); i++) {
-      //   //     JSONObject result = array.getJSONObject(i);
-      //   //  System.out.println(result);
-      //   //  }
-
-       //   System.out.println("Array length: " + titles.length);
-      // //  System.out.println("Content: " + Arrays.toString(titles));
-
-         //  deleteKeys(titles);
-
-       //   for(int i = 0; i < titles.length; i++)
-        //     System.out.println(titles[i]);
-
-      //   //    String[] array1 = {"An", "Spectre", "The Nut Job", "Legend"};
-      //   //   String[] array2 = {"An", "Spectre", "The Here After", "Burnt", "Legend"};
-      //   //   checkTitles(array1, array2);
-
-      //   //writeToJSON("movies.json");
-      //   //System.out.println(getTrailer("tt1355683"));
-      //   //   String[][] allmovies = getAllInfos();
-      //   //   for (String[] movie : allmovies) {
-      //   //      for (String info: movie) {
-      //   //          System.out.println(info);
-      //   //     }
-      //   //   }
-      //  System.out.println(encodeString("Hello, you!"));
-       // System.out.println(encodeString("Varsågod"));
-       // System.out.println(encodeString("Moa's öl"));
-       // printMoviesInfos();
-        
-        
     }
 
 

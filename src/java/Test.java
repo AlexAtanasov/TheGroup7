@@ -6,13 +6,13 @@ public class Test {
  	public static void main(String[] args){
  		HttpRequests obj = new HttpRequests();
         
-        String[] keys = obj.getAllKeysList("Rachele");
+        String[] keys = obj.getAllKeysList("");
         for (String key: keys){
             System.out.println(key + "\n");
         }
 
         JsonGenerator json = new JsonGenerator();
-        json.bucketToJson("Test.json", "RacheleTest");
+        json.bucketToJson("Test.json", "");
     }
 
 }

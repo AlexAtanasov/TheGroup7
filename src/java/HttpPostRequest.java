@@ -1,109 +1,60 @@
 package src.java;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpDelete;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.util.EntityUtils;
-
-import java.io.IOException;
-import java.net.URLEncoder;
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 /* This class implements a Post Http request in java
 * */
 public class  HttpPostRequest {
 
+    HttpRequests request = new HttpRequests();
+    String bucket;
+    static String movies_bucket = "Cinema_Chatter_Movies_Data";
+    static String hashtags_bucket = "Cinema_Chatter_Hashtags";
+    static String counters_bucket = "Cinema_Chatter_Counters";
+    static HttpClient client = HttpClientBuilder.create().build();
 
-    /* This method saves the movies infos in the Riak database as json */
-    public static void postMoviesData(String[] info) {
+    static String IP = "127.0.0.1";
+    static String PORT = "10018";
 
-        HttpClient client = HttpClientBuilder.create().build();
-        HttpPost postData = new HttpPost("http://127.0.0.1:10018/buckets/Movie_Info/keys/" + info[9]);
-      //  HttpPost postHashtags = new HttpPost("http://127.0.0.1:10018/buckets/Hashtags21/keys/" + info[9]);
-        postData.setHeader("Content-Type", "application/json");
-     //   postHashtags.setHeader("Content-Type", "application/json");
-        String jsonString = "{\"title\":\"" + info[0] + "\", " +
+
+    public static String  getDate() {
+        Date date = new Date( );
+        Format dateFormat = new SimpleDateFormat("yyyy.MM.dd");
+        String currentDate = dateFormat.format(date);
+
+        return currentDate;
+    }
+
+
+       /* This method saves the movies infos in the Riak database as json */
+    public void postMoviesData(String[] info) {
+
+        String movies_url = "http://" + IP + ":" + PORT + "/buckets/" + movies_bucket + "/keys/" + info[9];
+        String hashtags_url = "http://" + IP + ":" + PORT + "/buckets/" + hashtags_bucket + "/keys/" + info[9];
+        String counters_url = "http://" + IP + ":" + PORT + "/buckets/" + counters_bucket + "/keys/" + info[9];
+
+        String date = getDate();
+
+        String jsonMovies = "{\"title\":\"" + info[0] + "\", " +
                 "\"year\":\"" + info[3] + "\", " +
                 "\"imdbrating\":\"" + info[4] + "\", " +
                 "\"plot\":\"" + info[7] + "\", " +
                 "\"poster\":\"" + info[5] + "\", " +
-                "\"trailer\":\"" + info[6] + "\", "
-                //  "\"HashtagL\":\"" + info[8] + "\", " +
-                //  "\"HashtagU\":\"" + info[9]
+                "\"trailer\":\"" + info[6] + "\""
                 + "\"}";
 
-        String hashtag = "{\"hashtag\":\"" + info[9]   + "\"}";
-
-        try {
-            //postData.setEntity(new StringEntity(jsonString, ContentType.create("application/json")));
-
-
-            postData.setEntity(new StringEntity(jsonString));
-         //   postHashtags.setEntity(new StringEntity(hashtag));
-
-            HttpResponse response = client.execute(postData);
-          //  HttpResponse responseHashtag = client.execute(postHashtags);
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        String jsonHashtag = "{\"hashtag\":\"" + info[9]   + "\"}";
+        String jsonCounter = "{\"Date\":\"" + date +  "\"}";
+        request.post(movies_url, jsonMovies);
+        request.post(hashtags_url, jsonHashtag);
+        request.post(counters_url, jsonCounter);
 
     }
-
-
-
-
-    public static String getData() {
-        HttpClient client = HttpClientBuilder.create().build();
-        HttpGet getdata = new HttpGet("http://127.0.0.1:10018/buckets/MovieInfo8/keys?keys=true");
-       //HttpResponse response = client.execute(getdata);
-         String content = "";
-        try {
-            HttpResponse response = client.execute(getdata);
-            HttpEntity entity = response.getEntity();
-             content = EntityUtils.toString(response.getEntity());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return content;
-
-    }
-
-
-
-    public static void deleteKeys(String[] keys) {
-       // String key = "%23TheHereAfter";
-        String key = "";
-
-        HttpClient client = HttpClientBuilder.create().build();
-        //HttpDelete deleteData = new HttpDelete("http://127.0.0.1:10018/buckets/Movies_Infos/keys/" + key);
-
-
-        try {
-
-            for (int i = 0; i < keys.length; i++) {
-               key = keys[i].toString();
-              // URLEncoder.encode(keys[i], "UTF-8");
-               HttpDelete deleteData = new HttpDelete("http://127.0.0.1:10018/buckets/Movie_Info/keys/" + key);
-               deleteData.setHeader("Accept", "application/json");
-               HttpResponse response = client.execute(deleteData);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-
-
-    }
-
 
 
 }

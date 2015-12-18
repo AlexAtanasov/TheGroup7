@@ -9,9 +9,8 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
-
 import java.io.IOException;
-import java.net.URLEncoder;
+
 
 
 /* This class implements POST, GET and DELETE HttpRequests in java
@@ -25,7 +24,7 @@ public class HttpRequests {
     HttpEntity entity;
     String bucket;
     String key;
-    static String IP = "129.16.155.12";
+    static String IP = "127.0.0.1";
     static String PORT = "10018";
 
     public HttpRequests(){
@@ -33,41 +32,17 @@ public class HttpRequests {
     }
 
 
-    /* This method saves the movies infos in the Riak database as json */
-    public void postMoviesData(String[] info) {
-
-        HttpPost postData = new HttpPost("http://" + IP + ":" + PORT + "/buckets/Movie_Info/keys/" + info[9]);
-        //  HttpPost postHashtags = new HttpPost("http://127.0.0.1:10018/buckets/Hashtags21/keys/" + info[9]);
-        postData.setHeader("Content-Type", "application/json");
-        //   postHashtags.setHeader("Content-Type", "application/json");
-        String jsonString = "{\"title\":\"" + info[0] + "\", " +
-                "\"year\":\"" + info[3] + "\", " +
-                "\"imdbrating\":\"" + info[4] + "\", " +
-                "\"plot\":\"" + info[7] + "\", " +
-                "\"poster\":\"" + info[5] + "\", " +
-                "\"trailer\":\"" + info[6] + "\""
-                //  "\"HashtagL\":\"" + info[8] + "\", " +
-                //  "\"HashtagU\":\"" + info[9]
-                + "\"}";
-
-        String hashtag = "{\"hashtag\":\"" + info[9]   + "\"}";
-
+    public void post(String url, String entity) {
+        post = new HttpPost(url);
+        post.setHeader("Content-Type", "application/json");
         try {
-
-              postData.setEntity(new StringEntity(jsonString));
-            //   postHashtags.setEntity(new StringEntity(hashtag));
-
-            HttpResponse response = client.execute(postData);
-            //  HttpResponse responseHashtag = client.execute(postHashtags);
-
-
+            post.setEntity(new StringEntity(entity));
+            response = client.execute(post);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-    }
-
-
+     }
 
 
     public String getAllKeys(String bucket) {
@@ -117,7 +92,6 @@ public class HttpRequests {
    /*This function returns all buckets in a given riak IP/Port*/
     public String getAllBuckets(String ip, String port) {
         String url = "http://" + ip + ":" + port + "/buckets?buckets=true";
-       // String url = "http://127.0.0.1:10018/buckets?buckets=true";
         this.get = new HttpGet(url);
         String content = "";
         try {
@@ -135,11 +109,9 @@ public class HttpRequests {
 
     /* This function returns the values of a given bucket/key */
     public String getKeyData(String bucket, String key) {
-        
         this.bucket = bucket;
         this.key = key;
         String url = "http://" + IP + ":" + PORT + "/buckets/" + bucket + "/keys/" + key;
-        //  curl -v http://127.0.0.1:10018/buckets/Hashtags/keys/#45Years
         this.get = new HttpGet(url);
         String content = "";
         try {
@@ -156,7 +128,6 @@ public class HttpRequests {
 
     /* This function deletes the values of a given key/bucket*/
     public void deleteKey(String bucket, String key) {
-
         this.bucket = bucket;
         this.key = key;
         String url = "http://" + IP + ":" + PORT + "/buckets/" + bucket + "/keys/" + key;
@@ -195,8 +166,6 @@ public class HttpRequests {
    }
 
 
-
-
     public static void deleteAllKeys(String[] keys) {
         String key = "";
         HttpClient client = HttpClientBuilder.create().build();
@@ -205,7 +174,6 @@ public class HttpRequests {
 
             for (int i = 0; i < keys.length; i++) {
                 key = keys[i].toString();
-                // URLEncoder.encode(keys[i], "UTF-8");
                 HttpDelete deleteData = new HttpDelete("http://" + IP + ":" + PORT + "/buckets/Movie_Info/keys/" + key);
                 deleteData.setHeader("Accept", "application/json");
                 HttpResponse response = client.execute(deleteData);
@@ -215,11 +183,7 @@ public class HttpRequests {
         }
 
 
-
-
     }
-
-
 
 
 }
