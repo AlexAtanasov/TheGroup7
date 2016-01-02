@@ -1,0 +1,802 @@
+{
+"45Years": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "157",
+"rating": "7"
+},
+{
+"date": "12-08-2015",
+"popularity": "43",
+"rating": "3"
+},
+{
+"date": "12-15-2015",
+"popularity": "54",
+"rating": "0"
+}
+]
+},"FidelioAlicesOdyssey": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "151",
+"rating": "4"
+},
+{
+"date": "12-08-2015",
+"popularity": "195",
+"rating": "0"
+},
+{
+"date": "12-15-2015",
+"popularity": "161",
+"rating": "9"
+}
+]
+},"MayaTheBeeMovie": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "17",
+"rating": "0"
+},
+{
+"date": "12-08-2015",
+"popularity": "33",
+"rating": "2"
+},
+{
+"date": "12-15-2015",
+"popularity": "70",
+"rating": "2"
+}
+]
+},"Burnt": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "127",
+"rating": "1"
+},
+{
+"date": "12-08-2015",
+"popularity": "40",
+"rating": "7"
+},
+{
+"date": "12-15-2015",
+"popularity": "57",
+"rating": "8"
+}
+]
+},"Carol": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "43",
+"rating": "9"
+},
+{
+"date": "12-08-2015",
+"popularity": "188",
+"rating": "0"
+},
+{
+"date": "12-15-2015",
+"popularity": "29",
+"rating": "3"
+}
+]
+},"TheNutJob": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "57",
+"rating": "0"
+},
+{
+"date": "12-08-2015",
+"popularity": "32",
+"rating": "9"
+},
+{
+"date": "12-15-2015",
+"popularity": "111",
+"rating": "4"
+}
+]
+},"TheDeposit": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "179",
+"rating": "0"
+},
+{
+"date": "12-08-2015",
+"popularity": "118",
+"rating": "7"
+},
+{
+"date": "12-15-2015",
+"popularity": "109",
+"rating": "0"
+}
+]
+},"TheHereAfter": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "47",
+"rating": "6"
+},
+{
+"date": "12-08-2015",
+"popularity": "79",
+"rating": "6"
+},
+{
+"date": "12-15-2015",
+"popularity": "29",
+"rating": "9"
+}
+]
+},"LabyrinthOfLies": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "29",
+"rating": "0"
+},
+{
+"date": "12-08-2015",
+"popularity": "39",
+"rating": "0"
+},
+{
+"date": "12-15-2015",
+"popularity": "89",
+"rating": "1"
+}
+]
+},"EnManSomHeterOve": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "182",
+"rating": "2"
+},
+{
+"date": "12-08-2015",
+"popularity": "155",
+"rating": "5"
+},
+{
+"date": "12-15-2015",
+"popularity": "30",
+"rating": "8"
+}
+]
+},"EnUnderbarJavlaJul": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "41",
+"rating": "4"
+},
+{
+"date": "12-08-2015",
+"popularity": "82",
+"rating": "7"
+},
+{
+"date": "12-15-2015",
+"popularity": "15",
+"rating": "6"
+}
+]
+},"HeNamedMeMalala": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "40",
+"rating": "5"
+},
+{
+"date": "12-08-2015",
+"popularity": "196",
+"rating": "3"
+},
+{
+"date": "12-15-2015",
+"popularity": "134",
+"rating": "1"
+}
+]
+},"HotelTransylvania2": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "40",
+"rating": "5"
+},
+{
+"date": "12-08-2015",
+"popularity": "56",
+"rating": "4"
+},
+{
+"date": "12-15-2015",
+"popularity": "21",
+"rating": "1"
+}
+]
+},"InsideOut": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "192",
+"rating": "2"
+},
+{
+"date": "12-08-2015",
+"popularity": "186",
+"rating": "8"
+},
+{
+"date": "12-15-2015",
+"popularity": "192",
+"rating": "9"
+}
+]
+},"IngridBergmanInHerOwnWords": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "110",
+"rating": "7"
+},
+{
+"date": "12-08-2015",
+"popularity": "158",
+"rating": "0"
+},
+{
+"date": "12-15-2015",
+"popularity": "143",
+"rating": "0"
+}
+]
+},"Joy": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "133",
+"rating": "4"
+},
+{
+"date": "12-08-2015",
+"popularity": "79",
+"rating": "3"
+},
+{
+"date": "12-15-2015",
+"popularity": "92",
+"rating": "9"
+}
+]
+},"WomanInGold": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "31",
+"rating": "4"
+},
+{
+"date": "12-08-2015",
+"popularity": "125",
+"rating": "3"
+},
+{
+"date": "12-15-2015",
+"popularity": "195",
+"rating": "2"
+}
+]
+},"LassemajasDetektivbyraStellaNostra": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "156",
+"rating": "3"
+},
+{
+"date": "12-08-2015",
+"popularity": "18",
+"rating": "4"
+},
+{
+"date": "12-15-2015",
+"popularity": "154",
+"rating": "4"
+}
+]
+},"Legend": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "128",
+"rating": "1"
+},
+{
+"date": "12-08-2015",
+"popularity": "125",
+"rating": "0"
+},
+{
+"date": "12-15-2015",
+"popularity": "49",
+"rating": "2"
+}
+]
+},"LouderThanBombs": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "141",
+"rating": "5"
+},
+{
+"date": "12-08-2015",
+"popularity": "36",
+"rating": "3"
+},
+{
+"date": "12-15-2015",
+"popularity": "174",
+"rating": "5"
+}
+]
+},"Tangerines": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "122",
+"rating": "3"
+},
+{
+"date": "12-08-2015",
+"popularity": "45",
+"rating": "5"
+},
+{
+"date": "12-15-2015",
+"popularity": "2",
+"rating": "3"
+}
+]
+},"Pan": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "9",
+"rating": "9"
+},
+{
+"date": "12-08-2015",
+"popularity": "187",
+"rating": "9"
+},
+{
+"date": "12-15-2015",
+"popularity": "56",
+"rating": "2"
+}
+]
+},"ParanormalActivityTheGhostDimension": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "109",
+"rating": "9"
+},
+{
+"date": "12-08-2015",
+"popularity": "115",
+"rating": "8"
+},
+{
+"date": "12-15-2015",
+"popularity": "140",
+"rating": "1"
+}
+]
+},"Floride": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "38",
+"rating": "2"
+},
+{
+"date": "12-08-2015",
+"popularity": "138",
+"rating": "1"
+},
+{
+"date": "12-15-2015",
+"popularity": "144",
+"rating": "7"
+}
+]
+},"ThePeanutsMovieSnoopysGrandAdventure": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "95",
+"rating": "1"
+},
+{
+"date": "12-08-2015",
+"popularity": "179",
+"rating": "3"
+},
+{
+"date": "12-15-2015",
+"popularity": "24",
+"rating": "3"
+}
+]
+},"Spectre": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "105",
+"rating": "3"
+},
+{
+"date": "12-08-2015",
+"popularity": "105",
+"rating": "7"
+},
+{
+"date": "12-15-2015",
+"popularity": "196",
+"rating": "4"
+}
+]
+},"BridgeOfSpies": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "40",
+"rating": "6"
+},
+{
+"date": "12-08-2015",
+"popularity": "119",
+"rating": "5"
+},
+{
+"date": "12-15-2015",
+"popularity": "192",
+"rating": "4"
+}
+]
+},"StarWarsTheForceAwakens": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "126",
+"rating": "7"
+},
+{
+"date": "12-08-2015",
+"popularity": "118",
+"rating": "6"
+},
+{
+"date": "12-15-2015",
+"popularity": "198",
+"rating": "4"
+}
+]
+},"TaleOfTales": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "108",
+"rating": "8"
+},
+{
+"date": "12-08-2015",
+"popularity": "131",
+"rating": "7"
+},
+{
+"date": "12-15-2015",
+"popularity": "8",
+"rating": "7"
+}
+]
+},"TheDiaryOfATeenageGirl": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "69",
+"rating": "7"
+},
+{
+"date": "12-08-2015",
+"popularity": "184",
+"rating": "2"
+},
+{
+"date": "12-15-2015",
+"popularity": "198",
+"rating": "5"
+}
+]
+},"TheGirlKing": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "124",
+"rating": "2"
+},
+{
+"date": "12-08-2015",
+"popularity": "82",
+"rating": "5"
+},
+{
+"date": "12-15-2015",
+"popularity": "151",
+"rating": "6"
+}
+]
+},"TheHungerGamesMockingjayPart2": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "19",
+"rating": "8"
+},
+{
+"date": "12-08-2015",
+"popularity": "123",
+"rating": "0"
+},
+{
+"date": "12-15-2015",
+"popularity": "185",
+"rating": "6"
+}
+]
+},"TheIntern": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "73",
+"rating": "6"
+},
+{
+"date": "12-08-2015",
+"popularity": "146",
+"rating": "4"
+},
+{
+"date": "12-15-2015",
+"popularity": "122",
+"rating": "4"
+}
+]
+},"TheMartian": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "107",
+"rating": "0"
+},
+{
+"date": "12-08-2015",
+"popularity": "77",
+"rating": "0"
+},
+{
+"date": "12-15-2015",
+"popularity": "155",
+"rating": "1"
+}
+]
+},"TheNightBefore": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "158",
+"rating": "3"
+},
+{
+"date": "12-08-2015",
+"popularity": "160",
+"rating": "4"
+},
+{
+"date": "12-15-2015",
+"popularity": "62",
+"rating": "9"
+}
+]
+},"TheProgram": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "65",
+"rating": "7"
+},
+{
+"date": "12-08-2015",
+"popularity": "197",
+"rating": "8"
+},
+{
+"date": "12-15-2015",
+"popularity": "71",
+"rating": "9"
+}
+]
+},"Tjuvheder": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "121",
+"rating": "4"
+},
+{
+"date": "12-08-2015",
+"popularity": "97",
+"rating": "6"
+},
+{
+"date": "12-15-2015",
+"popularity": "153",
+"rating": "6"
+}
+]
+},"TsatsikiFarsanOchOlivkriget": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "107",
+"rating": "4"
+},
+{
+"date": "12-08-2015",
+"popularity": "82",
+"rating": "8"
+},
+{
+"date": "12-15-2015",
+"popularity": "41",
+"rating": "8"
+}
+]
+},"TankOmRyktetArSant": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "61",
+"rating": "6"
+},
+{
+"date": "12-08-2015",
+"popularity": "69",
+"rating": "0"
+},
+{
+"date": "12-15-2015",
+"popularity": "100",
+"rating": "0"
+}
+]
+},"An": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "187",
+"rating": "9"
+},
+{
+"date": "12-08-2015",
+"popularity": "175",
+"rating": "4"
+},
+{
+"date": "12-15-2015",
+"popularity": "54",
+"rating": "0"
+}
+]
+}}

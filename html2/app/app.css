@@ -1,0 +1,42 @@
+/* app css stylesheet */
+
+#img{
+  float:left;
+  position: relative;
+  padding-right: 10px;
+}
+#title{
+  margin-top: 30px;
+    font-size: 50px;
+    line-height: 0%;
+}
+#imdbRating{
+  padding-top: 20px;
+}
+#popularity{
+margin-top: 1px;
+}
+body{
+  background-image: url(../app/img/4.jpg);
+  /*background-repeat:no-repeat;*/
+  background-size : 100% auto                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+}
+.container {
+    font-family: Georgia, Serif;
+    font-size: 16px;
+    line-height: 25px;
+    color: #3B3B3B;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 1);
+}
+#content{
+  position:relative;
+}
+#release{
+
+}
+.panel-default > .panel-heading {
+background-color: white
+}
+.panel-group .panel {
+      overflow: visible;
+}

@@ -1,0 +1,84 @@
+<!doctype html>
+<html ng-app="app">
+  <head>
+  <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cinema Chatter</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          </button>
+          <a class="navbar-brand" href="/app/">Cinema Chatter</a>
+          <ul>
+                <li><a href="#main">Home</a></li>
+                <li><a href="#about-us">About Us</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+    </nav>
+    <div class="container">
+      <div ng-controller="AccordionCtrl">
+        <uib-accordion close-others="true">        
+          <uib-accordion-group heading="{{templates.title}} {{templates.popularity}}" ng-repeat="templates in templates" is-open="isopen">
+          <div ng-switch on="isopen">
+            <div ng-switch-when="true">
+                <div id="img">
+          <img src="{{templates.poster}}">
+          </div>
+          <div id="content">
+           <div id="title">{{templates.title}}
+           </div>
+           <div id="imdbRating">
+           <span class="imdbRatingPlugin" data-user="ur63614835" data-title="{{templates.imdbID}}" data-style="p3"><a href="http://www.imdb.com/title/tt2379713/?ref_=plg_rt_1"><img src="http://g-ecx.images-amazon.com/images/G/01/imdb/plugins/rating/images/imdb_37x18.png"/>
+</a></span><script>(function(d,s,id){var js,stags=d.getElementsByTagName(s)[0];if(d.getElementById(id)){return;}js=d.createElement(s);js.id=id;js.src="http://g-ec2.images-amazon.com/images/G/01/imdb/plugins/rating/js/rating.min.js";stags.parentNode.insertBefore(js,stags);})(document,'script','imdb-rating-api');</script>
+           </div>
+           <div id="popularity">
+            <h3><b>Popularity:</b> {{templates.popularity}}</h3>
+            </div>
+      <div id="release">
+        <p><b>Release Date:</b> {{templates.release}}</p>
+      </div>
+    <p><b>Director:</b> {{templates.director}}</p>
+    <p><b>Actors:</b> {{templates.actors}}</p>
+    <p><b>Plot:</b> {{templates.plot}}}</p>
+    <p><b>Genre:</b> {{templates.genre}}</p>
+    </div>
+    <div ng-controller="CollapseDemoCtrl">
+  <button type="button" class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Watch Trailer</button>
+  <div ng-switch on="isCollapsed">
+            <div ng-switch-when="true">
+    <iframe ng-src="{{templates.trailer}}" width="480" height="270" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" frameborder="no" scrolling="no"></iframe>
+    </div>
+    </div>
+    </div>
+    <div ng-controller="LineCtrl">
+    <canvas id="line" class="chart chart-line" chart-data="{{donutData1.data.popularity}}"
+  chart-labels="{{donutData1.data.date}}" chart-legend="true"
+  chart-click="onClick" >
+</canvas> 
+</div>
+            </div>
+        </div>
+          
+          </uib-accordion-group>
+        </uib-accordion>
+      </div>
+    </div>
+    <section id="services" >
+    <p></p>
+    </section>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.js"></script>
+    <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js"></script>
+    <script src="https://cdnjs.com/libraries/chart.js"></script>
+    <script src="app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+    <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
+  </body>     
+</html>

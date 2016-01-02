@@ -1,0 +1,31 @@
+<div>
+	<a href="#templates">Go Back</a>
+	<br><br>
+	<div class="col-md-4">
+		<!-- <img class="img-full" src="img/{{mainImage}}"> -->
+		<img src="{{template.poster}}">
+		<!-- <div class="row">
+			<div ng-repeat="image in template.images | limitTo:4">
+				<div class="col-md-3">
+					<img class="img-full" ng-src="img/{{image.name}}" ng-click="setImage(image)">
+				</div>
+			</div>
+		</div> -->
+	</div>
+	<div class="col-md-8">
+		<h3>Title: {{template.title}}</h3>
+		<span class="imdbRatingPlugin" data-user="ur63614835" data-title="{{template.imdbID}}" data-style="p3"><a href="http://www.imdb.com/title/{{template.imdbID}}/?ref_=plg_rt_1"><img src="http://g-ecx.images-amazon.com/images/G/01/imdb/plugins/rating/images/imdb_37x18.png" alt=" Spectre
+(2015) on IMDb" />
+</a></span><script>(function(d,s,id){var js,stags=d.getElementsByTagName(s)[0];if(d.getElementById(id)){return;}js=d.createElement(s);js.id=id;js.src="http://g-ec2.images-amazon.com/images/G/01/imdb/plugins/rating/js/rating.min.js";stags.parentNode.insertBefore(js,stags);})(document,'script','imdb-rating-api');</script>
+		<h3>Popularity: {{template.popularity}}</h3>
+		<p>Release Date: {{template.release}}</p>
+		<p>Director: {{template.director}}</p>
+		<p>Actors: {{template.actors}}</p>
+		<p>Plot: {{template.plot}}}</p>
+		<p>Genre: {{template.genre}}</p>
+		<p>Video:
+		<iframe src="https://www.youtube.com/embed/z4UDNzXD3qA" width="480" height="270" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" frameborder="no" scrolling="no"></iframe>
+		<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/z4UDNzXD3qA" frameborder="0" allowfullscreen></iframe> -->
+		</p>
+	</div>
+</div>
