@@ -1,10 +1,8 @@
 package src.java;
 
-import src.java.HttpPostRequest;
 
 import java.io.InputStreamReader;
 import java.net.URLEncoder;
-import java.util.Arrays;
 import java.util.Scanner;
 import java.net.URL;
 import java.io.FileWriter;
@@ -132,9 +130,9 @@ public class MoviesInfos {
         String imdbURL = "http://www.imdb.com/title/" + imdbID;
         URL url = new URL(imdbURL);
         Scanner in = new Scanner(new InputStreamReader(url.openStream()));
-         while ((in.findInLine("<div class=\"slate\">") == null) && (in.hasNextLine())) {
+        while ((in.findInLine("<div class=\"slate\">") == null) && (in.hasNextLine())) {
             in.nextLine();
-            
+
         }
         if (in.hasNext()) {
             in.nextLine();
@@ -195,11 +193,11 @@ public class MoviesInfos {
 
     /*
     * The function takes in the IMDB ID of a movie (as a String) and returns a list
-    * with [title, year, IMDB rating, plot, hashtagL, hashtagU].
+    * with [title, year, IMDB rating, plot, genre, director, actor,hashtagL, hashtagU].
     */
     public static String[] getIMDBinfo(String imdbID) throws Exception {
 
-        String[] new_info = new String[6];
+        String[] new_info = new String[9];//6
 
         // We use the OMDB api
         String omdbURL = "http://www.omdbapi.com/?i=" + imdbID + "&y=&plot=full&r=json";
@@ -224,7 +222,12 @@ public class MoviesInfos {
             new_info[1] = info[1].substring(info[1].length()-4, info[1].length());
             new_info[2] = info[15].substring(13, info[15].length());
             new_info[3] = info[9].substring(7, info[9].length());
-
+            //genre
+            new_info[6] = info[5].substring(8, info[5].length());
+            //director
+            new_info[7] = info[6].substring(11, info[6].length());
+            //actor
+            new_info[8] = info[8].substring(9, info[8].length());
             new_info[4] = generateHashtags(new_info[0])[0];
             new_info[5] = generateHashtags(new_info[0])[1];
         }
@@ -262,7 +265,7 @@ public class MoviesInfos {
         result = result.replace("Ä", "A");
         result = result.replace("Ö", "O");
         return result;
-        
+
     }
 
     /*
@@ -303,11 +306,17 @@ public class MoviesInfos {
         for (String movie : movies) {
             try {
                 String[] info = getAllInfos(movie);
-                System.out.println("Title: " + info[0].replaceAll("\\+", " "));
+                 System.out.println("Title: " + info[0].replaceAll("\\+", " "));
+                //System.out.println("Title: " + info[0]);
                 System.out.println("Year: " + info[3]);
                 System.out.println("Rating: " + info[4]);
                 System.out.println("Plot: " + info[7]);
                 System.out.println("PosterURL: " +info[5]);
+                System.out.println("imdbID : " + info[2]);
+                System.out.println("Trailer : " + info[6]);
+                System.out.println("Genre : " +info[10]);
+                System.out.println("Director : " +info[11]);
+                System.out.println("Actors : " +info[12]);
                 System.out.println("Hastag(key): " +info[9]);
                 System.out.println("-----------------------------------------");
             } catch (Exception e) {
@@ -326,13 +335,15 @@ public class MoviesInfos {
         String comma = ",";
         String open = "{";
         String close = "}";
-
-        String title = "\"movie\": ";
+        String Director = "\"director\": ";
+        String Genre = "\"genre\": ";
+        String title = "\"title\": ";
         String pop = "\"pop\": ";
         String rating = "\"rating\": ";
         String plot = "\"plot\": ";
         String trailer = "\"trailer\": ";
         String poster = "\"poster\": ";
+        String actors= "\"actors\": ";
 
 
         try{
@@ -356,6 +367,15 @@ public class MoviesInfos {
                     file_writer.append(comma);
                     file_writer.append(new_line);
                     file_writer.append(rating + '"' + info[2] + '"');
+                    file_writer.append(comma);
+                    file_writer.append(new_line);
+                    file_writer.append(Director + '"'+info[11]+'"');
+                    file_writer.append(comma);
+                    file_writer.append(new_line);
+                    file_writer.append(actors + '"'+info[12]+'"');
+                    file_writer.append(comma);
+                    file_writer.append(new_line);
+                    file_writer.append(Genre + '"'+info[10]+'"');
                     file_writer.append(comma);
                     file_writer.append(new_line);
                     file_writer.append(plot + '"'+info[3]+'"');
@@ -392,7 +412,7 @@ public class MoviesInfos {
 
         String comma = ",";
         String new_line = "\n";
-        String header = "Title,Year,Plot,PosterURL,IMDBrating,hashtagL,hashtagU Close";
+        String header = "Title,Year,Director,Plot,PosterURL,IMDBrating,hashtagL,hashtagU Close";
 
 
         try{
@@ -411,7 +431,11 @@ public class MoviesInfos {
                     file_writer.append(comma);
                     file_writer.append(info[1]);
                     file_writer.append(comma);
+                    file_writer.append(info[11]);
+                    file_writer.append(comma);
                     file_writer.append('"' +info[3] + '"');
+
+
                     file_writer.append(comma);
                     file_writer.append(info[4]);
                     file_writer.append(comma);
@@ -435,9 +459,9 @@ public class MoviesInfos {
 
 
 
-    // [English Title, Swedish Title, IMDB ID, Year, IMDB Rating, Poster, Trailer, Plot, hastag_lowercase, hastag_camelcase]
+    // [English Title, Swedish Title, IMDB ID, Year, IMDB Rating, Poster, Trailer, Plot,Genre ,Director,Actor, hastag_lowercase, hastag_camelcase]
     public static String[] getAllInfos(String movie) throws Exception {
-        String[] result = new String[10];
+        String[] result = new String[13];
 
         result[1] = movie;
 
@@ -450,8 +474,11 @@ public class MoviesInfos {
         result[4] = imdbInfo[2];
         result[7] = imdbInfo[3];
         result[8] = imdbInfo[4];
+        result[10] = imdbInfo[6];
+        result[11] = imdbInfo[7];
+        result[12] = imdbInfo[8];
         //URLEncoder.encode(info[0], "UTF-8").replaceAll("\\+", "%20")
-       // result[9] = imdbInfo[5];
+        // result[9] = imdbInfo[5];
         result[9] = URLEncoder.encode(imdbInfo[5], "UTF-8");
 
 
@@ -459,11 +486,11 @@ public class MoviesInfos {
     }
 
     // This method saves all movies infos in the Riak database
-    public  static void saveInRiak() throws Exception {
+    public static void saveInRiak() throws Exception {
         HttpPostRequest request = new HttpPostRequest();
         String[] movies = getMovies();
         for(String movie : movies ) {
-            // System.out.println("Current: " + movie);
+            System.out.println("Current: " + movie);
             try {
 
                 String[] info = getAllInfos(movie);
@@ -471,7 +498,7 @@ public class MoviesInfos {
             } catch (Exception e) {
                 System.out.println("ERROR with movie: " + movie);
             }
-            // System.out.println("Saving: " + movie);
+            System.out.println("Saving: " + movie);
         }
     }
 
@@ -503,7 +530,7 @@ public class MoviesInfos {
 
         String[] result;
         String data = string;
-       // System.out.println(data);
+        // System.out.println(data);
         //  String[] result = new String[] {data};
         result = data.split(",");
         result[0] = result[0].substring(10, result[0].length() - 1);
@@ -517,12 +544,11 @@ public class MoviesInfos {
 
     }
 
-
     public static void main(String[] args) throws Exception {
-         // saveInRiak();
+
+        saveInRiak();
 
     }
-
 
 
 }

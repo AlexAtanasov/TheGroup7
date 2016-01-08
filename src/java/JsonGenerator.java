@@ -1,30 +1,7 @@
 package src.java;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpDelete;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.util.EntityUtils;
-
-import java.io.IOException;
-import java.net.URLEncoder;
-
-// import org.json.JSONArray;
-
+import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Scanner;
-
-// import org.json.simple.JSONObject;
-
-
-
-
-
 
 public class JsonGenerator {
 	// public static void main(String[] args) throws Exception {
@@ -69,15 +46,35 @@ public class JsonGenerator {
     public void bucketToJson(String fileName, String bucket){
         HttpRequests obj = new HttpRequests();
         String[] keys = obj.getAllKeysList(bucket);
+        int lastIndex = keys.length - 1;
+
         try {
-            FileWriter fileWriter = new FileWriter(fileName);
-            fileWriter.append("{");
-            for (String key: keys) {
-                fileWriter.append('"' + key + '"' + ':');
-                fileWriter.append("\n");
-                fileWriter.append(obj.getKeyData(bucket, key));
-                fileWriter.append(",\n");
-            }
+            /* create the json file in a specific directory */
+            File directory = new File("json");
+            directory.mkdirs();
+            File file = new File(directory, fileName);
+            FileWriter fileWriter = new FileWriter(file);
+            //FileWriter fileWriter = new FileWriter(fileName);
+              fileWriter.append("{");
+
+                for(int i = 0; i <= keys.length - 1; i++) {
+                    String key = keys[i];
+                    /* Making sure do not append the "," when reach the last index,
+                       { "key1": {data1}, "key2": {data2}, "key3": {data3} } */
+                    if(i == lastIndex) {
+                        fileWriter.append( '"' + key + '"' + ':');
+                        fileWriter.append("\n");
+                        fileWriter.append(obj.getKeyData(bucket, key));
+                        fileWriter.append("\n");
+
+                    }  else{
+                        fileWriter.append('"' + key + '"' + ':');
+                        fileWriter.append("\n");
+                        fileWriter.append(obj.getKeyData(bucket, key));
+                        fileWriter.append(",\n");
+                    }
+                }
+
             fileWriter.append("}");
             fileWriter.close();
         } catch (Exception e) {
@@ -134,4 +131,23 @@ public class JsonGenerator {
 //     return content;
 
 // }
+
+
+    public static void main(String[] args){
+        HttpRequests obj = new HttpRequests();
+
+        String[] keys = obj.getAllKeysList("Presentation_Movies_Data");
+        System.out.println(keys.length);
+        for (String key: keys){
+            System.out.println(key + "\n");
+        }
+
+        JsonGenerator json = new JsonGenerator();
+        json.bucketToJson("templates.json", "Presentation_Movies_Data");
+        json.bucketToJson("data.json", "Presentation_Data");
+    }
+
+
+
+
 }

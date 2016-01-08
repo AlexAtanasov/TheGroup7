@@ -18,13 +18,12 @@ import java.io.IOException;
 public class HttpRequests {
     HttpClient client = HttpClientBuilder.create().build();
     HttpGet get;
-    HttpPost post;
     HttpDelete delete;
     HttpResponse response;
     HttpEntity entity;
     String bucket;
     String key;
-    static String IP = "127.0.0.1";
+    static String IP = "129.16.155.12";
     static String PORT = "10018";
 
     public HttpRequests(){
@@ -33,11 +32,12 @@ public class HttpRequests {
 
 
     public void post(String url, String entity) {
-        post = new HttpPost(url);
+       HttpPost post = new HttpPost(url);
+
         post.setHeader("Content-Type", "application/json");
         try {
             post.setEntity(new StringEntity(entity));
-            response = client.execute(post);
+            HttpResponse response = client.execute(post);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -166,6 +166,10 @@ public class HttpRequests {
    }
 
 
+
+
+
+
     public static void deleteAllKeys(String[] keys) {
         String key = "";
         HttpClient client = HttpClientBuilder.create().build();
@@ -174,7 +178,7 @@ public class HttpRequests {
 
             for (int i = 0; i < keys.length; i++) {
                 key = keys[i].toString();
-                HttpDelete deleteData = new HttpDelete("http://" + IP + ":" + PORT + "/buckets/Movie_Info/keys/" + key);
+                HttpDelete deleteData = new HttpDelete("http://" + IP + ":" + PORT + "/buckets/Presentation_Movies_Data/keys/" + key);
                 deleteData.setHeader("Accept", "application/json");
                 HttpResponse response = client.execute(deleteData);
             }
@@ -184,6 +188,30 @@ public class HttpRequests {
 
 
     }
+
+
+
+
+    public  void cleanBucket(String bucket) {
+        String[] keys = getAllKeysList(bucket);
+        String key = "";
+        HttpClient client = HttpClientBuilder.create().build();
+
+        try {
+
+            for (int i = 0; i < keys.length; i++) {
+                key = keys[i].toString();
+                HttpDelete deleteData = new HttpDelete("http://" + IP + ":" + PORT + "/buckets/" + bucket + "/keys/" + key);
+                deleteData.setHeader("Accept", "application/json");
+                HttpResponse response = client.execute(deleteData);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
 
 
 }
