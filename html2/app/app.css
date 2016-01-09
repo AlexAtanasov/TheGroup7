@@ -1,5 +1,9 @@
 /* app css stylesheet */
 
+body {
+	padding: 80px 0 0 0;
+}
+
 #img{
   float:left;
   position: relative;
@@ -28,15 +32,42 @@ body{
     color: #3B3B3B;
     text-shadow: 1px 1px 0 rgba(255, 255, 255, 1);
 }
+
+.fcontainer{
+
+}
+.gcontainer{
+    
+    height: 500px;
+}
+
 #content{
   position:relative;
 }
-#release{
+.content-left{
+  width: 40%;
+  float: left;
+}
 
+.clear {
+  clear: both;
+}
+
+.content-right{
+  width: 40%;
+  margin: 0 40px 0 30px;
+  float: right;
 }
 .panel-default > .panel-heading {
 background-color: white
 }
 .panel-group .panel {
       overflow: visible;
+}
+
+.statistics {
+  padding: 0 20px;
+}
+
+canvas { height: 300px;
 }

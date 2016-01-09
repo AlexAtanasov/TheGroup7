@@ -4,25 +4,25 @@
 "data": 
 [
 {
-"date": "12-01-2015",
-"popularity": "157",
-"rating": "7"
+"date": "01-05-2016",
+"popularity": "57",
+"rating": "7.3"
 },
 {
-"date": "12-08-2015",
-"popularity": "43",
-"rating": "3"
+"date": "01-06-2015",
+"popularity": "53",
+"rating": "7.3"
 },
 {
-"date": "12-15-2015",
+"date": "01-07-2015",
 "popularity": "54",
-"rating": "0"
+"rating": "7.3"
 }
 ]
 },"FidelioAlicesOdyssey": 
 {
 "data": 
-[
+[																																																																																																																																																																																																																																																																																																																																																																	
 {
 "date": "12-01-2015",
 "popularity": "151",
@@ -179,24 +179,24 @@
 "rating": "1"
 }
 ]
-},"EnManSomHeterOve": 
+},"TheHatefulEight": 
 {
 "data": 
 [
 {
-"date": "12-01-2015",
-"popularity": "182",
-"rating": "2"
+"date": "01-05-2016",
+"popularity": "157",
+"rating": "8.2"
 },
 {
-"date": "12-08-2015",
-"popularity": "155",
-"rating": "5"
+"date": "01-06-2016",
+"popularity": "165",
+"rating": "8.1"
 },
 {
-"date": "12-15-2015",
-"popularity": "30",
-"rating": "8"
+"date": "01-07-2016",
+"popularity": "171",
+"rating": "8.1"
 }
 ]
 },"EnUnderbarJavlaJul": 
@@ -304,19 +304,19 @@
 "data": 
 [
 {
-"date": "12-01-2015",
-"popularity": "133",
-"rating": "4"
+"date": "01-05-2016",
+"popularity": "333",
+"rating": "6.7"
 },
 {
-"date": "12-08-2015",
-"popularity": "79",
-"rating": "3"
+"date": "01-06-2016",
+"popularity": "349",
+"rating": "6.7"
 },
 {
-"date": "12-15-2015",
-"popularity": "92",
-"rating": "9"
+"date": "01-07-2016",
+"popularity": "292",
+"rating": "6.7"
 }
 ]
 },"WomanInGold": 
@@ -504,19 +504,19 @@
 "data": 
 [
 {
-"date": "12-01-2015",
-"popularity": "105",
-"rating": "3"
+"date": "01-05-2015",
+"popularity": "205",
+"rating": "7.0"
 },
 {
-"date": "12-08-2015",
-"popularity": "105",
-"rating": "7"
+"date": "01-06-2015",
+"popularity": "202",
+"rating": "7.0"
 },
 {
-"date": "12-15-2015",
-"popularity": "196",
-"rating": "4"
+"date": "01-07-2015",
+"popularity": "200",
+"rating": "7.0"
 }
 ]
 },"BridgeOfSpies": 
@@ -526,17 +526,17 @@
 {
 "date": "12-01-2015",
 "popularity": "40",
-"rating": "6"
+"rating": "7"
 },
 {
 "date": "12-08-2015",
 "popularity": "119",
-"rating": "5"
+"rating": "7.5"
 },
 {
 "date": "12-15-2015",
 "popularity": "192",
-"rating": "4"
+"rating": "7.8"
 }
 ]
 },"StarWarsTheForceAwakens": 
@@ -544,19 +544,19 @@
 "data": 
 [
 {
-"date": "12-01-2015",
-"popularity": "126",
-"rating": "7"
+"date": "01-05-2015",
+"popularity": "1687",
+"rating": "8.8"
 },
 {
-"date": "12-08-2015",
-"popularity": "118",
-"rating": "6"
+"date": "01-06-2015",
+"popularity": "1784",
+"rating": "8.9"
 },
 {
-"date": "12-15-2015",
-"popularity": "198",
-"rating": "4"
+"date": "01-07-2015",
+"popularity": "1770",
+"rating": "8.9"
 }
 ]
 },"TaleOfTales": 
@@ -677,6 +677,26 @@
 "date": "12-15-2015",
 "popularity": "155",
 "rating": "1"
+}
+]
+},"Macbeth": 
+{
+"data": 
+[
+{
+"date": "12-01-2015",
+"popularity": "107",
+"rating": "7.2"
+},
+{
+"date": "12-08-2015",
+"popularity": "77",
+"rating": "7.0"
+},
+{
+"date": "12-15-2015",
+"popularity": "155",
+"rating": "7.4"
 }
 ]
 },"TheNightBefore": 
@@ -800,3 +820,4 @@
 }
 ]
 }}
+

@@ -11,14 +11,10 @@
     <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css">
   </head>
   <body>
-    <nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
           </button>
-          <a class="navbar-brand" href="/app/">Cinema Chatter</a>
-          <ul>
-                <li><a href="#main">Home</a></li>
-                <li><a href="#about-us">About Us</a></li>
-                <li><a href="#contact">Contact Us</a></li>
+          <a class="navbar-brand" href="#">Cinema Chatter</a>
     </nav>
     <div class="container">
       <div ng-controller="AccordionCtrl">
@@ -29,38 +25,40 @@
                 <div id="img">
           <img src="{{templates.poster}}">
           </div>
-          <div id="content">
-           <div id="title">{{templates.title}}
+          <div id="content" class="content-left">
+           <div id="title" data-name="{{templates.title}}">{{templates.title}}
            </div>
+           <br>
            <div id="imdbRating">
-           <span class="imdbRatingPlugin" data-user="ur63614835" data-title="{{templates.imdbID}}" data-style="p3"><a href="http://www.imdb.com/title/tt2379713/?ref_=plg_rt_1"><img src="http://g-ecx.images-amazon.com/images/G/01/imdb/plugins/rating/images/imdb_37x18.png"/>
+           <span class="imdbRatingPlugin" data-user="ur63614835" data-title="{{templates.imdbID}}" data-style="p3"><a href="http://www.imdb.com/title/{{templates.imdbID}}/?ref_=plg_rt_1"><img src="http://g-ecx.images-amazon.com/images/G/01/imdb/plugins/rating/images/imdb_37x18.png"/>
 </a></span><script>(function(d,s,id){var js,stags=d.getElementsByTagName(s)[0];if(d.getElementById(id)){return;}js=d.createElement(s);js.id=id;js.src="http://g-ec2.images-amazon.com/images/G/01/imdb/plugins/rating/js/rating.min.js";stags.parentNode.insertBefore(js,stags);})(document,'script','imdb-rating-api');</script>
            </div>
            <div id="popularity">
-            <h3><b>Popularity:</b> {{templates.popularity}}</h3>
+            <h3><b>Popularity:</b> <span id="popularity-text"></span></h3>
             </div>
-      <div id="release">
+      <!-- <div id="release">
         <p><b>Release Date:</b> {{templates.release}}</p>
-      </div>
+      </div> -->
     <p><b>Director:</b> {{templates.director}}</p>
     <p><b>Actors:</b> {{templates.actors}}</p>
-    <p><b>Plot:</b> {{templates.plot}}}</p>
+    <p><b>Plot:</b> {{templates.plot}}</p>
     <p><b>Genre:</b> {{templates.genre}}</p>
     </div>
-    <div ng-controller="CollapseDemoCtrl">
-  <button type="button" class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Watch Trailer</button>
-  <div ng-switch on="isCollapsed">
-            <div ng-switch-when="true">
     <iframe ng-src="{{templates.trailer}}" width="480" height="270" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" frameborder="no" scrolling="no"></iframe>
-    </div>
-    </div>
-    </div>
-    <div ng-controller="LineCtrl">
-    <canvas id="line" class="chart chart-line" chart-data="{{donutData1.data.popularity}}"
-  chart-labels="{{donutData1.data.date}}" chart-legend="true"
-  chart-click="onClick" >
+    <div class="clear"></div>
+    <div ng-controller="LineCtrl" class="statistics">
+    <div class="gcontainer content-left">
+<canvas id="line" width="200" height="200" class="chart chart-line" chart-data="ocw.data" chart-labels="ocw.labels" chart-legend="true" chart-series="ocw.series" chart-click="onClick" colours="ocw.colours"
+options="ocw.options">
 </canvas> 
 </div>
+<div class="gcontainer content-right">
+<canvas id="line" width="200" height="200" class="chart chart-line" chart-data="ocw2.data" chart-labels="ocw2.labels" chart-legend="true" chart-series="ocw2.series" chart-click="onClick" colours="ocw2.colours"
+options="ocw2.options">
+</canvas> 
+</div>
+<br>
+    </div>
             </div>
         </div>
           
@@ -76,9 +74,14 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.js"></script>
     <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js"></script>
-    <script src="https://cdnjs.com/libraries/chart.js"></script>
+    <!-- <script src="https://cdnjs.com/libraries/chart.js"></script> -->
     <script src="app.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.1/Chart.min.js">
+    </script> -->
+<script src="bower_components/Chart.js/Chart.min.js"></script>
     <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
+    <script>
+    Chart.defaults.global.scaleBeginAtZero = true;
+    </script>
   </body>     
 </html>
